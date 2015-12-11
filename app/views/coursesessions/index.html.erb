@@ -13,10 +13,10 @@
       <tr>
         <td><%= coursesession.name %></td>
         <td>
-          <%= link_to 'Show', coursesession, class: "btn btn-primary" %>
-          <%= link_to 'Edit', edit_coursesession_path(coursesession), class: "btn btn-success" %>
+          <%= link_to 'Show', coursesession, class: "btn btn-primary btn-sm" %>
+          <%= link_to 'Edit', edit_coursesession_path(coursesession), class: "btn btn-success btn-sm" %>
           <%= link_to 'Destroy', coursesession, method: :delete, data: { confirm: 'Are you sure?' },
-                                                                                class: "btn btn-danger" %>
+                                                                       class: "btn btn-danger btn-sm" %>
         </td>
       </tr>
     <% end %>

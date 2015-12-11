@@ -12,10 +12,10 @@
     <% @courses.each do |course| %>
       <tr>
         <td><%= course.title %></td>
-        <td><%= link_to 'Show', course, class: "btn btn-primary" %>
-        <%= link_to 'Edit', edit_course_path(course), class: "btn btn-success" %>
+        <td><%= link_to 'Show', course, class: "btn btn-primary btn-sm" %>
+        <%= link_to 'Edit', edit_course_path(course), class: "btn btn-success btn-sm" %>
         <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' },
-                                                                class: "btn btn-danger" %></td>
+                                                                class: "btn btn-danger btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>

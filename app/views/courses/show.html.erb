@@ -1,11 +1,16 @@
 <%= @course.title %>
-<hr>
+<table class="table">
+
 <ol>
 <% @course.coursesemesters.each do |semester| %>
-  <li><%= link_to semester.name, course_coursesemester_path(@course, semester) %></li>
-<%= link_to 'Destroy', course_coursesemester_path(@course, semester), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <tr>
+    <td><%= link_to semester.name, course_coursesemester_path(@course, semester) %></td>
+    <td><%= link_to 'Destroy', course_coursesemester_path(@course, semester), 
+          method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
+  </tr>
 <% end -%>
 </ol>
+</table>
 <hr>
 
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
