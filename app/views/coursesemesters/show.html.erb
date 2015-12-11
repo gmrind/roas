@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @coursesemester.name %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @coursesemester.course.id %>
+</p>
+
+
+<%= link_to 'Edit', edit_course_coursesemester_path(id: @coursesemester), 
+                                                    class: "btn btn-default btn-sm" %>
+<%= link_to 'Back', :back, class: "btn btn-default btn-sm" %>

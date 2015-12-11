@@ -1,0 +1,102 @@
+<h2>Users List</h2>
+<% if current_user && @user.role == "admin" %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>User Name</th>
+      <th>User Role</th>
+      <th>User Email</th>
+      <th>Course</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to user.username, user %></td>
+      <td><%= user.role.titleize %></td>
+      <td><%= user.email %></td>
+        <% if user.takes.exists? %>
+          <td><% user.takes.each do |take| %>
+            <%= take.course.title %><br>
+          <% end %></td>
+        <% else %>
+          <td>Not Selected</td>
+        <% end %>
+      </td>
+      <td>
+        <span class="btn-group btn-group-sm" role="group">
+          <%= link_to "Show", user_path(user), class: "btn btn-primary" %>
+        </span>
+        <span class="btn-group btn-group-sm" role="group">
+          <%= link_to "Edit", edit_user_registration_path, class: "btn btn-success" %>
+        </span>
+        <span class="btn-group btn-group-sm" role="group">
+          <%= link_to "Delete", user, method: :delete, confirm: 'Are You Sure?', class: "btn btn-danger" %>
+        </span>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+
+<!-- Other then Admin Users -->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Course</th>
+      <th>Session</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <% if user.role == current_user.role %>
+        <tr>
+          <td><%= link_to user.username, user %></td>
+          <td><%= user.email %></td>
+          <% if user.takes.exists? %>
+            <td>
+              <% user.takes.each do |take| %>
+                <%= take.course.title %><br />
+              <% end %>
+            </td>
+            <% if user.sessionenrolls.exists? %>
+              <td>
+                <% user.sessionenrolls.each do |enroll| %>
+                  <%= enroll.coursesession.name %>
+                <% end %>
+              </td>
+            <% else %>
+            <% if current_user == user %>
+              <td><%= link_to "Enroll", sessionenrolls_path, class: "btn btn-default" %></td>
+            <% end %>
+            <% end %>
+            <% if user.role == "teacher" %>
+              <td><%= link_to "Other Course", takes_path, class: "btn btn-default" %></td>
+            <% end -%>
+          <% else %>
+            <% if current_user == user %>
+            <td><%= link_to "Select Course", takes_path, class: "btn btn-default" %></td>
+            <% end %>
+          <% end %>
+          <td>
+            <span class="btn-group btn-group-sm" role="group">
+              <%= link_to "Show", user_path(user), class: "btn btn-primary" %>
+            </span>
+          <% if current_user == user %>
+            <span class="btn-group btn-group-sm" role="group">
+              <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-success" %>
+            </span>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

@@ -1,0 +1,19 @@
+<%= form_for(@sessionenroll) do |f| %>
+  <% if @sessionenroll.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sessionenroll.errors.count, "error") %> prohibited this sessionenroll from being saved:</h2>
+
+      <ul>
+      <% @sessionenroll.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= f.collection_select :coursesession_id, Coursesession.all, :id, :name, prompt: true %>
+<br><br>
+    <%= f.submit "Enroll", class: "btn btn-primary" %>
+    <%= link_to 'Back', sessionenrolls_path, class: "btn btn-default" %>
+<% end %>

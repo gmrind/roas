@@ -1,0 +1,19 @@
+<%= form_for([@course, @course.coursesemesters.build]) do |f| %>
+  <% if @coursesemester.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@coursesemester.errors.count, "error") %> prohibited this coursesemester from being saved:</h2>
+
+      <ul>
+      <% @coursesemester.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= f.text_field :name, class: "form-control", placeholder: "Enter Semeter Name" %>
+<br>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+
+<% end %>

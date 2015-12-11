@@ -1,0 +1,2 @@
+module SessionenrollsHelper
+end

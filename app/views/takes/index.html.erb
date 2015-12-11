@@ -1,0 +1,28 @@
+<h2>Course Detail</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Course Title</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.takes.each do |take| %>
+      <tr>
+        <td><%= take.course.title %></td>
+        <td><%= link_to 'Edit', edit_take_path(take), class: "btn btn-success" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if @user.takes.exists? %>
+  <% if @user.role == "teacher" %>
+    <%= link_to 'Select Other Course', new_take_path, class: "btn btn-default" %>
+  <% end -%>
+<% else %>
+  <%= link_to 'Select New Course', new_take_path, class: "btn btn-default" %>
+<% end -%>

@@ -1,0 +1,21 @@
+<%= form_for(@take) do |f| %>
+  <% if @take.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(@take.errors.count, "error") %> prohibited this take from being saved:</h2>
+
+      <ul>
+      <% @take.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= f.collection_select :course_id, Course.all, :id, :title, prompt: true  %>
+<br><br>
+    <%= f.submit "Select Course", class: "btn btn-primary" %>
+    <% if :edit %>
+    <%= link_to 'Back', takes_path, class: "btn btn-default" %>
+    <% end %>
+<% end %>

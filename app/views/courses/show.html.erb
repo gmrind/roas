@@ -1,0 +1,19 @@
+<%= @course.title %>
+<hr>
+<ol>
+<% @course.coursesemesters.each do |semester| %>
+  <li><%= link_to semester.name, course_coursesemester_path(@course, semester) %></li>
+<%= link_to 'Destroy', course_coursesemester_path(@course, semester), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end -%>
+</ol>
+<hr>
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Add Semester
+</button>
+<br><br>
+<div class="collapse" id="collapseExample">
+  <div class="well">
+    <%= render 'coursesemesters/form' %>
+  </div>
+</div>

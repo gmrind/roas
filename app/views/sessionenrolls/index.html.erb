@@ -1,0 +1,36 @@
+<h2>Listing Session Enrollments</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Session</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.sessionenrolls.each do |sessionenroll| %>
+      <tr>
+        <td><%= sessionenroll.coursesession.name %></td>
+        <td>
+        <% if @user.role == "admin" %>
+        <%= link_to 'Show', sessionenroll, class: "btn btn-primary" %>
+        <%= link_to 'Edit', edit_sessionenroll_path(sessionenroll), class: "btn btn-success" %>
+        <%= link_to 'Destroy', sessionenroll, method: :delete, data: { confirm: 'Are you sure?' },
+                                                                          class: "btn btn-danger" %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if @user.sessionenrolls.exists? %>
+  <% if @user.role == "teacher" %>
+    <%= link_to 'New Enrollment', new_sessionenroll_path, class: "btn btn-default" %>
+  <% end %>
+<% else %>
+  <%= link_to 'New Enrollment', new_sessionenroll_path, class: "btn btn-default" %>
+<% end %>

@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-6">
+    <%= form_for(@coursesession) do |f| %>
+      <% if @coursesession.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@coursesession.errors.count, "error") %> prohibited this coursesession from being saved:</h2>
+
+          <ul>
+          <% @coursesession.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+        <%= f.text_field :name, class: "form-control", placeholder: "Enter Session Name" %>
+    <br>
+        <%= f.submit "Add Session", class: "btn btn-primary" %>
+        <%= link_to 'Back', coursesessions_path, class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>

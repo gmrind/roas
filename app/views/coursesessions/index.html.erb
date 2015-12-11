@@ -1,0 +1,28 @@
+<h2>Listing Sessions</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coursesessions.each do |coursesession| %>
+      <tr>
+        <td><%= coursesession.name %></td>
+        <td>
+          <%= link_to 'Show', coursesession, class: "btn btn-primary" %>
+          <%= link_to 'Edit', edit_coursesession_path(coursesession), class: "btn btn-success" %>
+          <%= link_to 'Destroy', coursesession, method: :delete, data: { confirm: 'Are you sure?' },
+                                                                                class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add New Session', new_coursesession_path, class: "btn btn-default" %>

@@ -1,0 +1,29 @@
+<h1>Listing Coursesemesters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Course</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coursesemesters.each do |coursesemester| %>
+      <tr>
+        <td><%= coursesemester.name %></td>
+        <td><%= coursesemester.course %></td>
+        <td><%= coursesemester.user %></td>
+        <td><%= link_to 'Show', coursesemester %></td>
+        <td><%= link_to 'Edit', edit_coursesemester_path(coursesemester) %></td>
+        <td><%= link_to 'Destroy', coursesemester, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Coursesemester', new_coursesemester_path %>

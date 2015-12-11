@@ -1,0 +1,18 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-top: 60px;
+}
+
+select {
+  border: 1px solid #BDBDBD;
+  width: 50%;
+  padding: 5px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.login-penal {
+  margin-top: 100px;
+}
