@@ -1,1 +1,42 @@
-<%= render 'userinfo' %>
+<div class="row">
+  <div class="col-md-6">
+    <h2><%= @user.username %></h2>
+    <table class="table">
+      <tr>
+        <td><strong>Role:</strong></td>
+        <td><%= @user.role.titleize %></td>
+      </tr>
+      <tr>
+        <td><strong>Email:</strong></td>
+        <td><%= @user.email %></td>
+      </tr>
+      <% @user.sessionenrolls.each do |enroll| %>
+      <tr>
+        <td><strong>Session:</strong></td>
+        <td><%= enroll.coursesession.name %></td>
+      </tr>
+      <% end %>
+
+      <% @user.takes.each do |take| %>
+      <tr>
+        <td><strong>Course:</strong></td>
+        <td><%= take.course.title %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-12">
+    <table class="table">
+      <% take.course.coursesemesters.each do |semester| %>
+      <tr>
+        <td>
+          <div class="vdivider">
+            <strong><%= semester.name %></strong>&nbsp;
+          </div>
+          <%= render 'first_semester' %>
+        </td>
+      </tr>
+      <% end -%>
+      <% end %>
+    </table>
+  </div>
+</div>
