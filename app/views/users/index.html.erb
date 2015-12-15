@@ -68,20 +68,22 @@
             <% if user.sessionenrolls.exists? %>
               <td>
                 <% user.sessionenrolls.each do |enroll| %>
-                  <%= enroll.coursesession.name %>
+                  <%= enroll.coursesession.name %><br>
                 <% end %>
               </td>
             <% else %>
             <% if current_user == user %>
-              <td><%= link_to "Enroll", sessionenrolls_path, class: "btn btn-default" %></td>
+              <td><%= link_to "Enroll", sessionenrolls_path, class: "btn btn-default btn-sm" %></td>
             <% end %>
             <% end %>
+            <% if current_user == user %>
             <% if user.role == "teacher" %>
-              <td><%= link_to "Other Course", takes_path, class: "btn btn-default" %></td>
+              <td><%= link_to "Other Course", takes_path, class: "btn btn-default btn-sm" %></td>
+            <% end -%>
             <% end -%>
           <% else %>
             <% if current_user == user %>
-            <td><%= link_to "Select Course", takes_path, class: "btn btn-default" %></td>
+            <td><%= link_to "Select Course", takes_path, class: "btn btn-default btn-sm" %></td>
             <% end %>
           <% end %>
           <td>

@@ -7,6 +7,9 @@ class CoursesemestersController < ApplicationController
   end
 
   def show
+    @subject = Subject.new
+    # @subject = Subject.find(params[:id])
+    @course = Course.find(params[:course_id])
   end
 
   def new

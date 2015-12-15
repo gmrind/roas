@@ -32,7 +32,9 @@
           <div class="vdivider">
             <strong><%= semester.name %></strong>&nbsp;
           </div>
-          <%= render 'first_semester' %>
+          <% semester.subjects.each do |subject| %>
+<td><%= link_to subject.name, course_coursesemester_subject_path(semester, semester, subject) %></td>
+<% end -%>
         </td>
       </tr>
       <% end -%>

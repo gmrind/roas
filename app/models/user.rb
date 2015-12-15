@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   has_many :coursesessions,       dependent: :destroy
   has_many :sessionenrolls,       dependent: :destroy
   has_many :coursesemesters,      dependent: :destroy
+  has_many :subjects,             dependent: :destroy
 end

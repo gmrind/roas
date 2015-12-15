@@ -1,15 +1,44 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @coursesemester.name %>
 </p>
 <p>
   <strong>Name:</strong>
-  <%= @coursesemester.course.id %>
+  <%= @coursesemester.course.title %>
 </p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Subjects Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coursesemester.subjects.each do |subject| %>
+      <tr>
+        <td><%= link_to subject.name, course_coursesemester_subject_path(@course, @coursesemester, subject) %></td>
+        <% if @user.role == "admin" %>
+        <td><%= link_to 'Destroy', course_coursesemester_subject_path(@course, @coursesemester, subject), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  New Subject
+</button>
+<br><br>
+<div class="collapse" id="collapseExample">
+  <div class="well">
+    <%= render 'subjects/form' %>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_course_coursesemester_path(id: @coursesemester), 
                                                     class: "btn btn-default btn-sm" %>
-<%= link_to 'Back', :back, class: "btn btn-default btn-sm" %>
+<%= link_to 'Back', course_path(id: @course), class: "btn btn-default btn-sm" %>

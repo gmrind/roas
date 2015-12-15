@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211160457) do
+ActiveRecord::Schema.define(version: 20151215162623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,35 @@ ActiveRecord::Schema.define(version: 20151211160457) do
   add_index "enrolls", ["session_id"], name: "index_enrolls_on_session_id", using: :btree
   add_index "enrolls", ["user_id"], name: "index_enrolls_on_user_id", using: :btree
 
+  create_table "newenrolls", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "newsession_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "newenrolls", ["course_id"], name: "index_newenrolls_on_course_id", using: :btree
+  add_index "newenrolls", ["newsession_id"], name: "index_newenrolls_on_newsession_id", using: :btree
+  add_index "newenrolls", ["user_id"], name: "index_newenrolls_on_user_id", using: :btree
+
+  create_table "newsessions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "semestersubjects", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "coursesemester_id"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "semestersubjects", ["coursesemester_id"], name: "index_semestersubjects_on_coursesemester_id", using: :btree
+  add_index "semestersubjects", ["user_id"], name: "index_semestersubjects_on_user_id", using: :btree
+
   create_table "session_courses", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -107,6 +136,17 @@ ActiveRecord::Schema.define(version: 20151211160457) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "coursesemester_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "subjects", ["coursesemester_id"], name: "index_subjects_on_coursesemester_id", using: :btree
+  add_index "subjects", ["user_id"], name: "index_subjects_on_user_id", using: :btree
 
   create_table "takes", force: :cascade do |t|
     t.integer  "course_id"
@@ -144,10 +184,17 @@ ActiveRecord::Schema.define(version: 20151211160457) do
   add_foreign_key "coursesessions", "users"
   add_foreign_key "enrolls", "sessions"
   add_foreign_key "enrolls", "users"
+  add_foreign_key "newenrolls", "courses"
+  add_foreign_key "newenrolls", "newsessions"
+  add_foreign_key "newenrolls", "users"
+  add_foreign_key "semestersubjects", "coursesemesters"
+  add_foreign_key "semestersubjects", "users"
   add_foreign_key "session_courses", "users"
   add_foreign_key "sessionenrolls", "coursesessions"
   add_foreign_key "sessionenrolls", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "subjects", "coursesemesters"
+  add_foreign_key "subjects", "users"
   add_foreign_key "takes", "courses"
   add_foreign_key "takes", "users"
 end
