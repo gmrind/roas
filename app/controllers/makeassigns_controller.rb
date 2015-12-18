@@ -1,5 +1,7 @@
 class MakeassignsController < ApplicationController
   before_action :set_makeassign, only: [:show, :edit, :update, :destroy]
+  before_filter :unautherized_for_student,   only: [:index, :new, :edit, :update, :destroy]
+  before_filter :unautherized_for_all,   only: [:index, :edit, :update, :destroy]
 
   def index
     @makeassigns = Makeassign.all
@@ -73,4 +75,15 @@ class MakeassignsController < ApplicationController
     def makeassign_params
       params.require(:makeassign).permit(:subject_id, :user_id, :start_date, :end_date, :coursesemester_id, :coursesession_id, :body, :assign_no)
     end
+
+  def unautherized_for_student
+    @user = current_user
+    if current_user && User.find_by(email: "admin@roas.com") == current_user
+    elsif 
+      current_user && @user.role == "teacher"
+    else
+      flash[:alert] = "You are not authorized to view this page"
+      redirect_to @user
+    end
+  end
 end

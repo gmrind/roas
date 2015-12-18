@@ -1,5 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_filter :unautherized_for_all, only: [:index, :edit, :update, :destroy]
 
   def index
     @subjects = Subject.all

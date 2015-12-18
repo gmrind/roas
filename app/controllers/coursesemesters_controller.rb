@@ -1,6 +1,7 @@
 class CoursesemestersController < ApplicationController
   before_action :set_coursesemester, only: [:show, :edit, :update, :destroy]
-
+  before_filter :unautherized_for_all
+  
   def index
     @coursesemesters = Coursesemester.all
     @user = current_user

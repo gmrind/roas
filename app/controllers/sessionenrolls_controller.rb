@@ -1,6 +1,7 @@
 class SessionenrollsController < ApplicationController
   before_action :set_sessionenroll, only: [:show, :edit, :update, :destroy]
-
+  before_filter :unautherized_for_all, only: [:show, :edit, :update, :destroy]
+  
   def index
     @sessionenrolls = Sessionenroll.all
     @user = current_user

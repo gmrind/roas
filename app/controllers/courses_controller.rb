@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  # http_basic_authenticate_with name: "administratorofroas.com", password: "abcde.1234"
+  before_filter :unautherized_for_all
   def index
     @courses = Course.all
     @user = current_user

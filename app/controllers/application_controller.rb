@@ -22,4 +22,12 @@ class ApplicationController < ActionController::Base
                                                      :password, :password_confirmation, :role, :username)}
   end
 
+  def unautherized_for_all
+    @user = current_user
+    if current_user && User.find_by(email: "admin@roas.com") == current_user
+    else
+      flash[:alert] = "You are not authorized to view this page"
+      redirect_to @user
+    end
+  end
 end

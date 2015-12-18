@@ -1,6 +1,6 @@
 class CoursesessionsController < ApplicationController
   before_action :set_coursesession, only: [:show, :edit, :update, :destroy]
-
+  before_filter :unautherized_for_all
   def index
     @coursesessions = Coursesession.all
     @user = current_user
