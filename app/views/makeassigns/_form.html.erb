@@ -1,0 +1,39 @@
+<script type="text/javascript">
+       bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>
+
+<%= form_for([@course, @coursesemester, @subject, @subject.makeassigns.build]) do |f| %>
+  <% if @makeassign.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@makeassign.errors.count, "error") %> prohibited this makeassign from being saved:</h2>
+
+      <ul>
+      <% @makeassign.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="row">
+  <div class="col-md-12">
+
+      <%= f.text_field :assign_no, class: "form-control" %>
+<br>
+  <div class="date">
+      <%= f.label :start_date %><br>
+      <%= f.date_select :start_date, order: [:day, :month, :year] %>
+  </div>
+<br>
+  <div class="date">
+      <%= f.label :end_date %><br>
+      <%= f.date_select :end_date, order: [:day, :month, :year] %>
+  </div>
+<br>
+
+      <%= f.text_area :body, :cols=>"100", :rows=>"15" %>
+<br>
+      <%= f.submit "Create Assignment", class: "btn btn-primary" %>
+
+  </div>
+</div>
+<% end %>

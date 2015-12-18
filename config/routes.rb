@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   resources :users
   resources :courses do
     resources :coursesemesters do 
-      resources :subjects
+      resources :subjects do
+        resources :makeassigns
+      end
     end
   end
   resources :takes

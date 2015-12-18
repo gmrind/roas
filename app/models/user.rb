@@ -6,10 +6,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :courses,              dependent: :destroy
-  has_many :takes,                dependent: :destroy
-  has_many :coursesessions,       dependent: :destroy
-  has_many :sessionenrolls,       dependent: :destroy
-  has_many :coursesemesters,      dependent: :destroy
+  has_many :takes,                dependent: :destroy         
+  has_many :courses,              dependent: :destroy         
+  has_many :coursesessions,       dependent: :destroy         
+  has_many :sessionenrolls,       dependent: :destroy         
+  has_many :coursesemesters,      dependent: :destroy         
   has_many :subjects,             dependent: :destroy
+  has_many :makeassigns         
 end

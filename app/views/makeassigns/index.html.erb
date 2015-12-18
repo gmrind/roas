@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Makeassigns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Assign no</th>
+      <th>Subject</th>
+      <th>Teacher</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Coursesemester</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @makeassigns.each do |makeassign| %>
+      <tr>
+        <td><%= makeassign.assign_no %></td>
+        <td><%= makeassign.subject.name %></td>
+        <td><%= makeassign.user.username %></td>
+        <td><%= makeassign.start_date %></td>
+        <td><%= makeassign.end_date %></td>
+        <td><%= makeassign.coursesemester.name %></td>
+        <td><%= makeassign.body %></td>
+        <td><%= link_to 'Show', makeassign %></td>
+        <td><%= link_to 'Edit', edit_makeassign_path(makeassign) %></td>
+        <td><%= link_to 'Destroy', makeassign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Makeassign', new_makeassign_path %>

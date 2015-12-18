@@ -7,6 +7,9 @@ class SubjectsController < ApplicationController
   end
 
   def show
+    @makeassign = Makeassign.new
+    @course = Course.find(params[:course_id])
+    @coursesemester = Coursesemester.find(params[:coursesemester_id])
   end
 
   def new

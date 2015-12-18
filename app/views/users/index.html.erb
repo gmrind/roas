@@ -55,6 +55,7 @@
   </thead>
   <tbody>
     <% @users.each do |user| %>
+    <% if current_user == user %>
       <% if user.role == current_user.role %>
         <tr>
           <td><%= link_to user.username, user %></td>
@@ -78,7 +79,10 @@
             <% end %>
             <% if current_user == user %>
             <% if user.role == "teacher" %>
-              <td><%= link_to "Other Course", takes_path, class: "btn btn-default btn-sm" %></td>
+              <td><%= link_to "Other Course", takes_path %> |
+              <% if user.sessionenrolls.exists? %>
+              <%= link_to "other Enroll", sessionenrolls_path %></td>
+              <% end -%>
             <% end -%>
             <% end -%>
           <% else %>
@@ -99,6 +103,7 @@
         </tr>
       <% end %>
     <% end %>
+    <% end -%>
   </tbody>
 </table>
 <% end %>
