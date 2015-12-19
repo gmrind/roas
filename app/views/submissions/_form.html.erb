@@ -1,0 +1,25 @@
+<script type="text/javascript">
+       bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>
+
+<%= form_for([@course, @coursesemester, @subject, @makeassign, @makeassign.submissions.build]) do |f| %>
+  <% if @submission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@submission.errors.count, "error") %> prohibited this submission from being saved:</h2>
+
+      <ul>
+      <% @submission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.number_field :roll_no, class: "form-control", placeholder: "Enter your Roll Number" %>
+<br>
+    <%= f.hidden_field  :user_id, class: "form-control" %>
+<br>
+    <%= f.text_area :sub_body, :cols=>"100", :rows=>"5" %>
+<br>
+    <%= f.submit "Submit Assignment", class: "btn btn-primary" %>
+<% end %>

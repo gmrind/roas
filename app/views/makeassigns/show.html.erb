@@ -13,5 +13,21 @@
     <%= @makeassign.end_date.strftime("%d %B %Y") %></li>
   </ul>
 </div>
+<hr>
+
+<% if @user.role == "teacher" %>
+  <%= render 'submissions/teacher_assignments_check' %>
+<% end -%>
+
+<% if @user.role == "student" %>
+    <%= render 'submissions/submissions_assignments' %>
+    <hr>
+      <%= render 'submissions/form' %>
+    <hr>
+<% end -%>
+
+
+
+
 
 <%= link_to 'Back', course_coursesemester_subject_path(@course, @coursesemester, @subject), class: "btn btn-default" %>

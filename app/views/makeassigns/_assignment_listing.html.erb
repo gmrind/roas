@@ -1,27 +1,26 @@
 <div class="panel panel-default">
-  <!-- Default panel contents -->
   <div class="panel-heading"><h4>Listing Assignments</h4></div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Assign no</th>
-      <th>Body</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody class="panel panel-info">
-    <% @subject.makeassigns.each do |makeassign| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link_to makeassign.assign_no, course_coursesemester_subject_makeassign_path(@course, @coursesemester, @subject, makeassign) %></td>
-        <td><%= sanitize makeassign.body.truncate_words(10), tags: %w(a img), attributes: %w() %></td>
-        <td><%= makeassign.start_date.strftime("%d-%m-%Y") %></td>
-        <td><%= makeassign.end_date.strftime("%d-%m-%Y") %></td>
+        <th>Assign no</th>
+        <th>Body</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody class="panel panel-info">
+      <% @subject.makeassigns.each do |makeassign| %>
+        <tr>
+          <td><%= link_to makeassign.assign_no, course_coursesemester_subject_makeassign_path(@course, @coursesemester, @subject, makeassign) %></td>
+          <td><%= sanitize makeassign.body.truncate_words(10), tags: %w(a img), attributes: %w() %></td>
+          <td><%= makeassign.start_date.strftime("%d-%m-%Y") %></td>
+          <td><%= makeassign.end_date.strftime("%d-%m-%Y") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

@@ -9,6 +9,10 @@ class MakeassignsController < ApplicationController
   end
 
   def show
+    @course = Course.find(params[:course_id])
+    @coursesemester = Coursesemester.find(params[:coursesemester_id])
+    @subject = Subject.find(params[:subject_id])
+    @submission = Submission.new
   end
 
   def new
@@ -26,6 +30,7 @@ class MakeassignsController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:user_id])
     @course = Course.find(params[:course_id])
     @coursesemester = Coursesemester.find(params[:coursesemester_id])
     @subject = Subject.find(params[:subject_id])

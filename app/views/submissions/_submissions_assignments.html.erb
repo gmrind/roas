@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Listing Assignment Submission</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Roll no</th>
+        <th>Assignment</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @makeassign.submissions.where(user_id: current_user).each do |submission| %>
+        <tr>
+          <td><%= submission.roll_no %></td>
+          <td><%= sanitize submission.sub_body.truncate_words(10), tags: %w(a img), attributes: %w() %></td>
+          <td>
+          <% if current_user == @user %>
+          <%= link_to 'Show', course_coursesemester_subject_makeassign_submission_path(@course, @coursesemester, @subject, @makeassign, submission), class: "btn btn-primary btn-sm" %>
+          <% end -%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

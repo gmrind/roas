@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217161619) do
+ActiveRecord::Schema.define(version: 20151218134704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,18 @@ ActiveRecord::Schema.define(version: 20151217161619) do
   add_index "subjects", ["coursesemester_id"], name: "index_subjects_on_coursesemester_id", using: :btree
   add_index "subjects", ["user_id"], name: "index_subjects_on_user_id", using: :btree
 
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "roll_no"
+    t.text     "sub_body"
+    t.integer  "makeassign_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "submissions", ["makeassign_id"], name: "index_submissions_on_makeassign_id", using: :btree
+  add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
+
   create_table "takes", force: :cascade do |t|
     t.integer  "course_id"
     t.datetime "created_at", null: false
@@ -123,6 +135,8 @@ ActiveRecord::Schema.define(version: 20151217161619) do
   add_foreign_key "sessionenrolls", "users"
   add_foreign_key "subjects", "coursesemesters"
   add_foreign_key "subjects", "users"
+  add_foreign_key "submissions", "makeassigns"
+  add_foreign_key "submissions", "users"
   add_foreign_key "takes", "courses"
   add_foreign_key "takes", "users"
 end

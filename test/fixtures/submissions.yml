@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  roll_no: 1
+  sub_body: MyText
+  makeassign_id: 
+
+two:
+  user_id: 
+  roll_no: 1
+  sub_body: MyText
+  makeassign_id: 

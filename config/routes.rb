@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :courses do
     resources :coursesemesters do 
       resources :subjects do
-        resources :makeassigns
+        resources :makeassigns do
+          resources :submissions
+        end
       end
     end
   end
