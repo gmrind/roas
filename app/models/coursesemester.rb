@@ -3,4 +3,6 @@ class Coursesemester < ActiveRecord::Base
   belongs_to :user
   has_many   :subjects
   has_many   :makeassigns
+
+  validates  :name,   presence: true
 end

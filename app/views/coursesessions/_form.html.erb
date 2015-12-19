@@ -2,8 +2,8 @@
   <div class="col-xs-6">
     <%= form_for(@coursesession) do |f| %>
       <% if @coursesession.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@coursesession.errors.count, "error") %> prohibited this coursesession from being saved:</h2>
+        <div class="alert alert-danger">
+          <h3><%= pluralize(@coursesession.errors.count, "error") %> prohibited this coursesession from being saved:</h3>
 
           <ul>
           <% @coursesession.errors.full_messages.each do |message| %>

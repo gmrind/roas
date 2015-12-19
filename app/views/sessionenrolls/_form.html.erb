@@ -1,7 +1,7 @@
 <%= form_for(@sessionenroll) do |f| %>
   <% if @sessionenroll.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sessionenroll.errors.count, "error") %> prohibited this sessionenroll from being saved:</h2>
+    <div class="alert alert-danger">
+      <h3><%= pluralize(@sessionenroll.errors.count, "error") %> prohibited this sessionenroll from being saved:</h3>
 
       <ul>
       <% @sessionenroll.errors.full_messages.each do |message| %>

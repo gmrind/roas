@@ -1,7 +1,7 @@
 <%= form_for([@course, @course.coursesemesters.build]) do |f| %>
   <% if @coursesemester.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@coursesemester.errors.count, "error") %> prohibited this coursesemester from being saved:</h2>
+    <div class="alert alert-danger">
+      <h3><%= pluralize(@coursesemester.errors.count, "error") %> prohibited this coursesemester from being saved:</h3>
 
       <ul>
       <% @coursesemester.errors.full_messages.each do |message| %>

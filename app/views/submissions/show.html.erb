@@ -1,9 +1,11 @@
-<p>
+<div class="well well-sm">
   <strong>Roll no:</strong>
-  <%= @submission.roll_no %>
-</p>
+  <%= @submission.roll_no %> | 
+  <%= @submission.user.username %>
+</div>
 
-<p>
-  <strong>Assignment:</strong>
+<div class="well">
+  <strong>Assignment:</strong><hr>
   <%= sanitize @submission.sub_body %>
-</p>
+</div>
+

@@ -30,7 +30,7 @@ class MakeassignsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @course = Course.find(params[:course_id])
     @coursesemester = Coursesemester.find(params[:coursesemester_id])
     @subject = Subject.find(params[:subject_id])
@@ -38,7 +38,7 @@ class MakeassignsController < ApplicationController
 
     respond_to do |format|
       if @makeassign.save
-        format.html { redirect_to @coursesemester, notice: 'Makeassign was successfully created.' }
+        format.html { redirect_to course_coursesemester_subject_url(@course, @coursesemester, @subject), notice: 'Makeassign was successfully created.' }
         format.json { render :show, status: :created, location: @makeassign }
       else
         format.html { render :new }

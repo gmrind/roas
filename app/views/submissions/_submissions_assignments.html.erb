@@ -12,7 +12,7 @@
     <tbody>
       <% @makeassign.submissions.where(user_id: current_user).each do |submission| %>
         <tr>
-          <td><%= submission.roll_no %></td>
+          <td><%= submission.roll_no %> | <%= submission.user.username %></td>
           <td><%= sanitize submission.sub_body.truncate_words(10), tags: %w(a img), attributes: %w() %></td>
           <td>
           <% if current_user == @user %>

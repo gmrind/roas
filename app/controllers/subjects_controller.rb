@@ -24,6 +24,7 @@ class SubjectsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @course = Course.find(params[:course_id])
     @coursesemester = Coursesemester.find(params[:coursesemester_id])
     @subject = @coursesemester.subjects.create(subject_params)
