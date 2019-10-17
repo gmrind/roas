@@ -3,9 +3,7 @@
 </h3>
   <%= render 'makeassigns/assignment_listing' %>
 <br>
-<% if @user.role == "admin" %>
-<%= link_to 'New Assignment', new_course_coursesemester_subject_makeassign_path(@course, @coursesemester, @subject), class: "btn btn-primary" %>
-<% elsif @user.role == "teacher" %>
+<% if @user.role == "teacher" %>
 <%= link_to 'New Assignment', new_course_coursesemester_subject_makeassign_path(@course, @coursesemester, @subject), class: "btn btn-primary" %>
 <% end -%>
 <%= link_to 'Back', user_path(@user), class: "btn btn-default" %>
