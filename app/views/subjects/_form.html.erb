@@ -1,5 +1,5 @@
 <%= form_for([@course, @coursesemester, @coursesemester.subjects.build]) do |f| %>
-  <div class="alert alert-danger">
+  <div class="alert alert-info">
   <% if @subject.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
